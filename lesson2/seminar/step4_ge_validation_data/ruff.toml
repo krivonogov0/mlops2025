@@ -1,0 +1,40 @@
+exclude = [
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".git",
+    "__pycache__",
+    "build",
+    "venv",
+    "*.egg-info",
+    "*.pyi",
+]
+
+line-length = 120
+indent-width = 4
+target-version = "py310"
+
+[lint]
+select = [
+    "E",
+    "F",
+    "B",
+    "I",
+    "UP",
+    "PL",
+    "RET",
+    "SIM",
+    "PTH",
+    "COM",
+]
+
+fixable = ["ALL"]
+unfixable = []
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
