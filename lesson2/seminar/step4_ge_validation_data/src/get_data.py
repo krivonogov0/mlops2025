@@ -1,12 +1,13 @@
-import os
-import tempfile
 import shutil
+import tempfile
+from pathlib import Path
+
 import pandas as pd
 import yaml
 
 
 def load_params():
-    with open("params.yaml", "r") as f:
+    with Path("params.yaml").open() as f:
         return yaml.safe_load(f)
 
 
@@ -14,7 +15,8 @@ def download_data():
     params = load_params()
     url = params["urls"]["tips"]
 
-    os.makedirs("data/raw", exist_ok=True)
+    data_dir = Path("data/raw")
+    data_dir.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(url)
 

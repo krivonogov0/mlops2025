@@ -1,13 +1,14 @@
-import os
 import pickle
+from pathlib import Path
+
 import pandas as pd
 import yaml
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
 
 def load_params():
-    with open("params.yaml", "r") as f:
+    with Path("params.yaml").open() as f:
         return yaml.safe_load(f)
 
 
@@ -20,14 +21,20 @@ def train_model():
     y = df["high_tip"]
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=params["test_size"], random_state=params["seed"]
+        X,
+        y,
+        test_size=params["test_size"],
+        random_state=params["seed"],
     )
 
     model = LogisticRegression(random_state=params["seed"])
     model.fit(X_train, y_train)
 
-    os.makedirs("models", exist_ok=True)
-    with open("models/model.pkl", "wb") as f:
+    models_dir = Path("models")
+    model_path = models_dir / "model.pkl"
+
+    models_dir.mkdir(parents=True, exist_ok=True)
+    with model_path.open("wb") as f:
         pickle.dump(model, f)
 
 
