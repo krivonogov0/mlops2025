@@ -38,7 +38,7 @@ def validate_model():
         sys.exit(1)
     else:
         print(
-            f"Model validation PASSED: accuracy = {accuracy:.4f} >= threshold = {accuracy_min}"
+            f"Model validation PASSED: accuracy = {accuracy:.4f} >= threshold = {accuracy_min}",
         )
 
 

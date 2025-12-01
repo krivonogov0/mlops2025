@@ -1,7 +1,8 @@
-import os
 import sys
-import pandas as pd
+from pathlib import Path
+
 import great_expectations as gx
+import pandas as pd
 from great_expectations.dataset import PandasDataset
 
 
@@ -40,7 +41,8 @@ def validate_data():
     validation_results = ge_df.validate()
 
     # Создаем директории для отчетов
-    os.makedirs("reports/validation", exist_ok=True)
+    reports_dir = Path("reports/validation")
+    reports_dir.mkdir(parents=True, exist_ok=True)
 
     # Генерируем простой HTML отчет с результатами валидации
     success_rate = (
@@ -67,7 +69,7 @@ def validate_data():
     <div class="header">
         <h1>Tips Dataset Validation Report</h1>
         <div class="summary">
-            <p><strong>Success Rate:</strong> <span class="{'success' if success_rate == 1.0 else 'failed'}">{success_rate:.1%}</span></p>
+            <p><strong>Success Rate:</strong> <span class="{"success" if success_rate == 1.0 else "failed"}">{success_rate:.1%}</span></p>
             <p><strong>Total Expectations:</strong> {validation_results.statistics["evaluated_expectations"]}</p>
             <p><strong>Successful:</strong> <span class="success">{validation_results.statistics["successful_expectations"]}</span></p>
             <p><strong>Failed:</strong> <span class="failed">{validation_results.statistics["unsuccessful_expectations"]}</span></p>
@@ -75,7 +77,7 @@ def validate_data():
     </div>
 
     <h2>Expectation Results:</h2>
-"""
+"""  # noqa: E501
 
     for result in validation_results.results:
         status = "success" if result.success else "failed"
@@ -86,7 +88,7 @@ def validate_data():
         html_content += f"""
     <div class="expectation {status}">
         <strong>{status_icon} {expectation_type}</strong>
-        {f'<br><em>Column:</em> {column}' if column else ''}
+        {f"<br><em>Column:</em> {column}" if column else ""}
         <br><em>Success:</em> {result.success}
     </div>"""
 
@@ -104,7 +106,8 @@ def validate_data():
     )
 
     # Сохраняем HTML отчет
-    with open("reports/validation/index.html", "w", encoding="utf-8") as f:
+    report_path = Path("reports/validation/index.html")
+    with report_path.open("w", encoding="utf-8") as f:
         f.write(html_content)
 
     print("Validation report generated at: reports/validation/index.html")

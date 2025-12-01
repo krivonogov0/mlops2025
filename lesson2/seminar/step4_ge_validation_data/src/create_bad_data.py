@@ -1,10 +1,12 @@
+from pathlib import Path
+
 import pandas as pd
-import os
 
 
 def create_bad_data():
     """Creates bad dataset that will fail GE validation for demonstration"""
-    os.makedirs("data/raw", exist_ok=True)
+    data_dir = Path("data/raw")
+    data_dir.mkdir(parents=True, exist_ok=True)
 
     # Create data that violates our expectations
     bad_data = pd.DataFrame(
@@ -22,7 +24,7 @@ def create_bad_data():
             "smoker": ["No", "Yes", "No", "Yes", "No"],
             "day": ["Sat", "Sun", "Sat", "Sun", "Sat"],
             "time": ["Dinner", "Dinner", "Dinner", "Dinner", "Dinner"],
-        }
+        },
     )
 
     bad_data.to_csv("data/raw/tips.csv", index=False)
