@@ -5,7 +5,7 @@ ML pipeline with data validation using Great Expectations and Data Docs.
 ## Setup
 
 ```bash
-make install
+make install  # poetry install
 dvc init
 dvc remote add -d local ../../.dvcstore
 ```
