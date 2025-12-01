@@ -2,9 +2,8 @@
 name = "lesson-1"
 version = "0.1.0"
 description = "Homework 1 MLOps 2025"
-authors = [
-    {name = "Danil Krivonogov",email = "krivonogov0@vk.com"}
-]
+authors = ["Danil Krivonogov <krivonogov0@vk.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.12"
