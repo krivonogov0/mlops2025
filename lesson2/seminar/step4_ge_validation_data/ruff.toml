@@ -6,8 +6,15 @@ exclude = [
     "__pycache__",
     "build",
     "venv",
+    ".venv",
     "*.egg-info",
     "*.pyi",
+    "data/",
+    "models/",
+    "metrics/",
+    "reports/",
+    "dvc.lock",
+    "poetry.lock",
 ]
 
 line-length = 120

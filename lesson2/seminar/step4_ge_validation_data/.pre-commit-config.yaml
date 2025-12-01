@@ -1,5 +1,3 @@
-exclude: "^$"
-
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.7
@@ -30,8 +28,36 @@ repos:
     rev: 25.11.0
     hooks:
       - id: black
+        exclude: |
+            (?x)^(
+                data/|
+                models/|
+                metrics/|
+                reports/|
+                \.venv/|
+                __pycache__/|
+                \.git/|
+                \.dvc/|
+                \.ruff_cache/|
+                dvc\.lock$|
+                poetry\.lock$|
+            )
 
   - repo: https://github.com/pycqa/isort
     rev: 7.0.0
     hooks:
       - id: isort
+        exclude: |
+            (?x)^(
+                data/|
+                models/|
+                metrics/|
+                reports/|
+                \.venv/|
+                __pycache__/|
+                \.git/|
+                \.dvc/|
+                \.ruff_cache/|
+                dvc\.lock$|
+                poetry\.lock$|
+            )
