@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rag-animation-system"
+version = "0.1.0"
+description = "RAG-based animation generator from text"
+authors = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+httpx = "^0.27"
+Pillow = "^10.0"
+numpy = "^1.26"
+fuzzywuzzy = "^0.18.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
